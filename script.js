@@ -13,20 +13,16 @@ function colorGenerator(){
     let color = Math.floor(Math.random() * 256);
     return color;
 }
-
-const container = document.querySelector("div");
-const fragment = document.createDocumentFragment();
-createGrid(16);
-container.appendChild(fragment);
-container.addEventListener("mouseover", (event)=>{
-    let r = colorGenerator();
-    let g = colorGenerator();
-    let b = colorGenerator();
-    event.target.style.backgroundColor = `rgb(${r},${g},${b})`;
-})
+let div = document.createElement("div");
+div.style.display = "flex";
+div.style.justifyContent = "center";
+div.style.alignItems = "center";
+div.style.height = "100px";
 let btn = document.createElement("button");
 btn.textContent = "button";
-
+btn.style.padding = "8px 16px";
+btn.style.fontSize = "16px";
+btn.style.borderRadius = "12px";
 btn.addEventListener("click",()=>{
     let num = prompt("number of squares for new grid");
     if(num<=100){
@@ -37,7 +33,16 @@ btn.addEventListener("click",()=>{
     }else{
         alert("Only input a number less than 100");
     }
-
-    
 })
-document.body.insertBefore(btn,container);
+div.appendChild(btn);
+const container = document.querySelector("div");
+const fragment = document.createDocumentFragment();
+createGrid(16);
+container.appendChild(fragment);
+container.addEventListener("mouseover", (event)=>{
+    let r = colorGenerator();
+    let g = colorGenerator();
+    let b = colorGenerator();
+    event.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+})
+document.body.insertBefore(div,container);
