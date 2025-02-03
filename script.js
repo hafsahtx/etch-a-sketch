@@ -5,15 +5,24 @@ function createGrid(number){
         let w = container.offsetWidth/number;
         item.style.width = `${w}px`;
         item.style.height = "35px";
+        item.style.flexGrow = 1;
         fragment.appendChild(item);
     }
 }
+function colorGenerator(){
+    let color = Math.floor(Math.random() * 256);
+    return color;
+}
+
 const container = document.querySelector("div");
 const fragment = document.createDocumentFragment();
 createGrid(16);
 container.appendChild(fragment);
 container.addEventListener("mouseover", (event)=>{
-    event.target.style.background = "blue";
+    let r = colorGenerator();
+    let g = colorGenerator();
+    let b = colorGenerator();
+    event.target.style.backgroundColor = `rgb(${r},${g},${b})`;
 })
 let btn = document.createElement("button");
 btn.textContent = "button";
